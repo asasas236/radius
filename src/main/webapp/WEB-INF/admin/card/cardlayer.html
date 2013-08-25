@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Card</li>
+                    <li ng-class="{active: url == 'card/addcard.html'}">
+                        <a href ng-click="url = 'card/addcard.html'">Add A New Card</a>
+                    </li>
+                    <li ng-class="{active: url == 'card/card-userlist.html'}">
+                        <a href ng-click="url = 'card/card-userlist.html'">Card Users List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="span10">
+            <div ng-include src="url" ></div>
+        </div>
+    </div>
+</div>

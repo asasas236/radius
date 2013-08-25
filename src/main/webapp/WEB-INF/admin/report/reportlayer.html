@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Report</li>
+                    <li ng-class="{active: url == 'report/onlineuser.html'}">
+                        <a href ng-click="url = 'report/onlineuser.html'">Online Users List</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="span10">
+            <div ng-include src="url" ></div>
+        </div>
+    </div>
+</div>
