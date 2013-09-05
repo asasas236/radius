@@ -600,7 +600,7 @@ radius 数据库表格说明
 		<td>dailynextsrvid</td><td>日配额超限服务</td>
 	</tr>
 	<tr>
-		<td>availucp</td><td></td>
+		<td>availucp</td><td>在用户控制面板可用</td>
 	</tr>
 	<tr>
 		<td>renew</td><td>自动更新</td>
