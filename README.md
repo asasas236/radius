@@ -525,10 +525,10 @@ radius 数据库表格说明
 		<td>trafficaddmode</td><td></td>
 	</tr>
 	<tr>
-		<td>monthly</td><td></td>
+		<td>monthly</td><td>按月计算</td>
 	</tr>
 	<tr>
-		<td>enaddcredits</td><td></td>
+		<td>enaddcredits</td><td>允许欠款</td>
 	</tr>
 	<tr>
 		<td>minamount</td><td>最小基本数量</td>
@@ -537,7 +537,7 @@ radius 数据库表格说明
 		<td>minamountadd</td><td>最小增加数量</td>
 	</tr>
 	<tr>
-		<td>resetcounters</td><td></td>
+		<td>resetcounters</td><td>到期后重新计算</td>
 	</tr>
 	<tr>
 		<td>pricecalcdownload</td><td></td>
@@ -603,7 +603,7 @@ radius 数据库表格说明
 		<td>availucp</td><td></td>
 	</tr>
 	<tr>
-		<td>renew</td><td></td>
+		<td>renew</td><td>自动更新</td>
 	</tr>
 	<tr>
 		<td>policymapdl</td><td>Cisco策略映射 (DL)</td>
