@@ -542,13 +542,13 @@ radius 数据库表格说明
 		<td>resetcounters</td><td>到期后重新计算</td>
 	</tr>
 	<tr>
-		<td>pricecalcdownload</td><td></td>
+		<td>pricecalcdownload</td><td>后付费用户计费方式:下载流量</td>
 	</tr>
 	<tr>
-		<td>pricecalcupload</td><td></td>
+		<td>pricecalcupload</td><td>后付费用户计费方式:上传流量</td>
 	</tr>
 	<tr>
-		<td>pricecalcuptime</td><td></td>
+		<td>pricecalcuptime</td><td>后付费用户计费方式:在线时间</td>
 	</tr>
 	<tr>
 		<td>unitpricetax</td><td></td>
