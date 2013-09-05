@@ -95,6 +95,8 @@ radius 数据库表格说明
 *  [rm_changesrv](#rm_changesrv) [用户更换服务时记录的的一张表] [共计9个字段]
 *  [rm_cards](#rm_cards) [卡信息记录表] [共计21个字段]
 *  [rm_actsrv](#rm_actsrv) [用户激活服务记录表，那个用户，什么时候，激活了什么服务] [共计5个字段]
+*  [rm_allowednases](#rm_allowednases) [服务允许使用的nas] [共计2个字段]
+*  [rm_allowedmanagers](#rm_allowedmanagers) [服务允许什么管理员来管理] [共计2个字段]
 
 * <h4 id='rm_users'>rm_users</h4> [用户信息表] [共计42个字段] [back](#all-table)
 
@@ -745,6 +747,34 @@ radius 数据库表格说明
 	</tr>
 	<tr>
 		<td>5</td><td>dailynextsrvactive</td><td></td>
+	</tr>
+</table>
+
+* <h4 id='rm_allowednases'>rm_allowednases</h4> [服务允许使用的nas] [共计2个字段] [back](#all-table)
+
+<table>
+	<tr>
+		<th>#</th><th>字段</th><th>描述</th>
+	</tr>
+	<tr>
+		<td>1</td><td>srvid</td><td>服务id</td>
+	</tr>
+	<tr>
+		<td>2</td><td>nasid</td><td>nas id</td>
+	</tr>
+</table>
+
+* <h4 id='rm_allowedmanagers'>rm_allowedmanagers</h4> [服务允许什么管理员来管理] [共计2个字段] [back](#all-table)
+
+<table>
+	<tr>
+		<th>#</th><th>字段</th><th>描述</th>
+	</tr>
+	<tr>
+		<td>1</td><td>srvid</td><td>服务id</td>
+	</tr>
+	<tr>
+		<td>2</td><td>managername</td><td>管理员名字</td>
 	</tr>
 </table>
 
