@@ -518,13 +518,13 @@ radius 数据库表格说明
 		<td>srvtype</td><td>服务类型</td>
 	</tr>
 	<tr>
-		<td>timeaddmodeexp</td><td></td>
+		<td>timeaddmodeexp</td><td>日期累加模式 0:重置到期时间 1:延长到期时间 2:到期日期延长修改</td>
 	</tr>
 	<tr>
-		<td>timeaddmodeonline</td><td></td>
+		<td>timeaddmodeonline</td><td>时间累加模式 0:重置在线时间 1:延长在线时间 </td>
 	</tr>
 	<tr>
-		<td>trafficaddmode</td><td></td>
+		<td>trafficaddmode</td><td>流量增加模式 0:流量计数重置 1:附加 </td>
 	</tr>
 	<tr>
 		<td>monthly</td><td>按月计算</td>
