@@ -19,20 +19,23 @@ radius v0.0.1
 		+	index.html (admin登入页面)
 		+	main.html (登入后的主页面)
 		+	user (用户相关页面目录)
-			+	userlayer.html
-			+	adduser.html
-			+	userlist.html
+			+	userlayer.jsp
+			+	adduser.jsp
+			+	userlist.jsp
+		+ serivces (plan相关页面)
+			+ servicelist.jsp (plan列表)
+			+ createservice.jsp (创建plan)
 		+	report (报告相关页面目录)
-			+ reportlayer.html
-			+ onlineuser.html
+			+ reportlayer.jsp
+			+ onlineuser.jsp
 		+	nas (NAS相关页面目录)
-			+ naslayer.html
-			+ addnas.html
-			+ naslist.html
+			+ naslayer.jsp
+			+ addnas.jsp
+			+ naslist.jsp
 		+	card (卡相关页面目录)
-			+ cardlayer.html
-			+ addcard.html
-			+ card-userlist.html
+			+ cardlayer.jsp
+			+ addcard.jsp
+			+ card-userlist.jsp
 	+	public (静态资源目录，javascript, css, images)
 
 
@@ -40,13 +43,22 @@ radius v0.0.1
 <ul>
 	<li>系统
 		<ul>
-			<li>登入 [-]</li>
-			<li>注销 [-]</li>
+			<li>登入 [2013-09-05]</li>
+			<li>注销 [2013-09-05]</li>
 		</ul>
 	</li>
   <li>用户
     <ul>
-      <li>添加新用户 [-]</li>
+      <li>添加新用户 [2013-09-05]</li>
+      <li>用户列表 [2013-09-05]</li>
+      <li>编辑用户 [-]</li>
+    <ul>
+  </li>
+  <li>Services
+    <ul>
+      <li>创建服务 [-]</li>
+      <li>服务列表 [-]</li>
+      <li>编辑服务 [-]</li>
     <ul>
   </li>
   <li>NAS管理
@@ -429,40 +441,40 @@ radius 数据库表格说明
 		<th>字段</th><th>描述</th>
 	</tr>
 	<tr>
-		<td>srvid</td><td></td>
+		<td>srvid</td><td>服务ID，自动增长</td>
 	</tr>
 	<tr>
-		<td>srvname</td><td></td>
+		<td>srvname</td><td>服务名称</td>
 	</tr>
 	<tr>
-		<td>downrate</td><td></td>
+		<td>downrate</td><td>设置速率 下载</td>
 	</tr>
 	<tr>
-		<td>uprate</td><td></td>
+		<td>uprate</td><td>设置速率 上传</td>
 	</tr>
 	<tr>
-		<td>limitdl</td><td></td>
+		<td>limitdl</td><td>限制下载字节</td>
 	</tr>
 	<tr>
-		<td>limitul</td><td></td>
+		<td>limitul</td><td>限制上传字节</td>
 	</tr>
 	<tr>
-		<td>limitcomb</td><td></td>
+		<td>limitcomb</td><td>限制合计流量</td>
 	</tr>
 	<tr>
-		<td>limitexpiration</td><td></td>
+		<td>limitexpiration</td><td>限制到期</td>
 	</tr>
 	<tr>
-		<td>limituptime</td><td></td>
+		<td>limituptime</td><td>限制在线时间</td>
 	</tr>
 	<tr>
-		<td>poolname</td><td></td>
+		<td>poolname</td><td>IP地址池名</td>
 	</tr>
 	<tr>
-		<td>unitprice</td><td></td>
+		<td>unitprice</td><td>净单价 总价</td>
 	</tr>
 	<tr>
-		<td>unitpriceadd</td><td></td>
+		<td>unitpriceadd</td><td>净欠款 总欠款</td>
 	</tr>
 	<tr>
 		<td>timebaseexp</td><td></td>
@@ -471,37 +483,37 @@ radius 数据库表格说明
 		<td>timebaseonline</td><td></td>
 	</tr>
 	<tr>
-		<td>timeunitexp</td><td></td>
+		<td>timeunitexp</td><td>时间单位</td>
 	</tr>
 	<tr>
-		<td>timeunitonline</td><td></td>
+		<td>timeunitonline</td><td>在线时间单位</td>
 	</tr>
 	<tr>
-		<td>trafficunitdl</td><td></td>
+		<td>trafficunitdl</td><td>下载流量单位</td>
 	</tr>
 	<tr>
-		<td>trafficunitul</td><td></td>
+		<td>trafficunitul</td><td>上传流量单位</td>
 	</tr>
 	<tr>
-		<td>trafficunitcomb</td><td></td>
+		<td>trafficunitcomb</td><td>合计流量单位</td>
 	</tr>
 	<tr>
-		<td>inittimeexp</td><td></td>
+		<td>inittimeexp</td><td>时间单位初始化</td>
 	</tr>
 	<tr>
-		<td>inittimeonline</td><td></td>
+		<td>inittimeonline</td><td>在线时间单位初始化</td>
 	</tr>
 	<tr>
-		<td>initdl</td><td></td>
+		<td>initdl</td><td>下载流量单位初始化</td>
 	</tr>
 	<tr>
-		<td>initul</td><td></td>
+		<td>initul</td><td>上传流量单位初始化</td>
 	</tr>
 	<tr>
-		<td>inittotal</td><td></td>
+		<td>inittotal</td><td>合计流量单位初始化</td>
 	</tr>
 	<tr>
-		<td>srvtype</td><td></td>
+		<td>srvtype</td><td>服务类型</td>
 	</tr>
 	<tr>
 		<td>timeaddmodeexp</td><td></td>
@@ -519,10 +531,10 @@ radius 数据库表格说明
 		<td>enaddcredits</td><td></td>
 	</tr>
 	<tr>
-		<td>minamount</td><td></td>
+		<td>minamount</td><td>最小基本数量</td>
 	</tr>
 	<tr>
-		<td>minamountadd</td><td></td>
+		<td>minamountadd</td><td>最小增加数量</td>
 	</tr>
 	<tr>
 		<td>resetcounters</td><td></td>
@@ -543,28 +555,28 @@ radius 数据库表格说明
 		<td>unitpriceaddtax</td><td></td>
 	</tr>
 	<tr>
-		<td>enableburst</td><td></td>
+		<td>enableburst</td><td>允许突发模式</td>
 	</tr>
 	<tr>
-		<td>dlburstlimit</td><td></td>
+		<td>dlburstlimit</td><td>突发限制下载</td>
 	</tr>
 	<tr>
-		<td>ulburstlimit</td><td></td>
+		<td>ulburstlimit</td><td>突发限制上传</td>
 	</tr>
 	<tr>
-		<td>dlburstthreshold</td><td></td>
+		<td>dlburstthreshold</td><td>突发门限 下载</td>
 	</tr>
 	<tr>
-		<td>ulburstthreshold</td><td></td>
+		<td>ulburstthreshold</td><td>突发门限 上载</td>
 	</tr>
 	<tr>
-		<td>dlbursttime</td><td></td>
+		<td>dlbursttime</td><td>突发时间 下载</td>
 	</tr>
 	<tr>
-		<td>ulbursttime</td><td></td>
+		<td>ulbursttime</td><td>突发时间 上传</td>
 	</tr>
 	<tr>
-		<td>enableservice</td><td></td>
+		<td>enableservice</td><td>激活服务</td>
 	</tr>
 	<tr>
 		<td>dlquota</td><td></td>
@@ -579,13 +591,13 @@ radius 数据库表格说明
 		<td>timequota</td><td></td>
 	</tr>
 	<tr>
-		<td>priority</td><td></td>
+		<td>priority</td><td>优先级</td>
 	</tr>
 	<tr>
-		<td>nextsrvid</td><td></td>
+		<td>nextsrvid</td><td>下一服务</td>
 	</tr>
 	<tr>
-		<td>dailynextsrvid</td><td></td>
+		<td>dailynextsrvid</td><td>日配额超限服务</td>
 	</tr>
 	<tr>
 		<td>availucp</td><td></td>
@@ -594,13 +606,13 @@ radius 数据库表格说明
 		<td>renew</td><td></td>
 	</tr>
 	<tr>
-		<td>policymapdl</td><td></td>
+		<td>policymapdl</td><td>Cisco策略映射 (DL)</td>
 	</tr>
 	<tr>
-		<td>policymapul</td><td></td>
+		<td>policymapul</td><td>Cisco 策略映射 (UL)</td>
 	</tr>
 	<tr>
-		<td>custattr</td><td></td>
+		<td>custattr</td><td>自定义RADIUS属性</td>
 	</tr>
 	
 	
