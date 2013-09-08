@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.telnet.radius.mapper.UserMapper">
+	<cache />
+	<insert id="insert" parameterType="User">
+		INSERT INTO `rm_users`(
+		`username`, `password`, `groupid`, `enableuser`, `uplimit`,
+		`downlimit`, `comblimit`, `firstname`, `lastname`, `company`,
+		`phone`,
+		`mobile`, `address`, `city`, `zip`,
+		`country`, `state`, `comment`,
+		`mac`, `usemacauth`,
+		`expiration`, `uptimelimit`, `srvid`, `staticip`,
+		`usestaticip`,
+		`createdon`, `acctype`, `credits`, `cardfails`,
+		`createdby`,
+		`owner`, `taxid`, `email`, `maccm`, `custattr`,
+		`warningsent`, `verifycode`, `verified`, `selfreg`, `verifyfails`,
+		`verifysentnum`, `verifymobile`)
+		VALUES (
+		#{username}, #{password},
+		#{groupid}, #{enableuser}, #{uplimit},
+		#{downlimit}, #{comblimit},
+		#{firstname}, #{lastname}, #{company},
+		#{phone}, #{mobile}, #{address},
+		#{city}, #{zip},
+		#{country}, #{state}, #{comment}, #{mac},
+		#{usemacauth},
+		#{expiration}, #{uptimelimit}, #{srvid}, #{staticip},
+		#{usestaticip},
+		#{createdon}, #{acctype}, #{credits}, #{cardfails},
+		#{createdby},
+		#{owner}, #{taxid}, #{email}, #{maccm}, #{custattr},
+		#{warningsent}, #{verifycode}, #{verified}, #{selfreg},
+		#{verifyfails},
+		#{verifysentnum}, #{verifymobile})
+	</insert>
+
+	<select id="queryUserList" resultMap="userResult">
+		SELECT * FROM `rm_users`
+		WHERE 1
+	</select>
+
+	<select id="checkAccountExist" resultType="int">
+		SELECT count(username)
+		FROM `rm_users` where `username` = #{0}
+	</select>
+
+	<select id="queryUserByName" resultMap="userResult">
+		SELECT *
+		FROM `rm_users`
+		where `username` = #{0}
+	</select>
+
+	<resultMap type="User" id="userResult">
+		<association property="service" column="srvid" javaType="Service"
+			select="querySerivceByUserSrvid" />
+	</resultMap>
+
+	<select id="querySerivceByUserSrvid" resultType="Service">
+		SELECT * FROM
+		`rm_services` WHERE srvid=#{0}
+	</select>
+
+	<select id="queryUserGroup" resultType="User">
+		SELECT * FROM
+		`rm_usergroups`
+	</select>
+
+	<update id="updateUser" parameterType="User">
+		UPDATE `rm_users` SET
+		`password`=#{password},`groupid`=#{groupid},`enableuser`=#{enableuser},
+		`uplimit`=#{uplimit},`downlimit`=#{downlimit},`comblimit`=#{comblimit},`firstname`=#{firstname},
+		`lastname`=#{lastname},`company`=#{company},`phone`=#{phone},`mobile`=#{mobile},
+		`address`=#{address},`city`=#{city},`zip`=#{zip},`country`=#{country},
+		`state`=#{state},`comment`=#{comment},`mac`=#{mac},`usemacauth`=#{usemacauth},
+		`expiration`=#{expiration},`uptimelimit`=#{uptimelimit},`srvid`=#{srvid},`staticip`=#{staticip},
+		`usestaticip`=#{usestaticip},`createdon`=#{createdon},`acctype`=#{acctype},`credits`=#{credits},
+		`cardfails`=#{cardfails},`createdby`=#{createdby},`owner`=#{owner},`taxid`=#{taxid},
+		`email`=#{email},`maccm`=#{maccm},`custattr`=#{custattr},`warningsent`=#{warningsent},
+		`verifycode`=#{verifycode},`verified`=#{verified},`selfreg`=#{selfreg},`verifyfails`=#{verifyfails},
+		`verifysentnum`=#{verifysentnum},`verifymobile`=#{verifymobile}
+		WHERE
+		`username`=#{username}
+	</update>
+	
+	
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.telnet.radius.mapper.ServiceMapper">
+
+	<cache />
+
+	<select id="queryServices" resultType="Service">
+		SELECT * FROM
+		`rm_services` WHERE 1
+	</select>
+
+	<select id="queryServiceById" parameterType="int" resultMap="serviceResult">
+		SELECT * FROM
+		`rm_services` WHERE srvid=#{0}
+	</select>
+
+	<resultMap id="serviceResult" type="Service">
+		<collection property="nases" javaType="ArrayList" column="srvid"
+			ofType="Nas" select="queryNasidList" />
+		<collection property="managers" javaType="ArrayList"
+			column="srvid" ofType="Manager" select="queryManagerList" />
+	</resultMap>
+
+	<select id="queryNasidList" parameterType="int" resultMap="NasResult">
+		SELECT * FROM `rm_allowednases` WHERE `srvid` = #{0}
+	</select>
+
+	<resultMap id="NasResult" type="Nas">
+		<id property="id" column="nasid" />
+	</resultMap>
+
+	<select id="queryManagerList" parameterType="int" resultMap="ManagerResult">
+		SELECT * FROM `rm_allowedmanagers` WHERE `srvid` = #{0}
+	</select>
+
+	<resultMap id="ManagerResult" type="Manager">
+		<id property="managername" column="managername" />
+	</resultMap>
+
+	<insert id="insertService" parameterType="Service"
+		statementType="PREPARED" useGeneratedKeys="true" keyProperty="srvid"
+		keyColumn="srvid">
+		<selectKey keyProperty="srvid" resultType="int" order="BEFORE">
+			SELECT MAX(srvid) +1 FROM `rm_services`
+		</selectKey>
+		INSERT INTO `rm_services`(`srvid`,`srvname`, `downrate`, `uprate`,
+		`limitdl`,`limitul`, `limitcomb`, `limitexpiration`, `limituptime`,
+		`poolname`,`unitprice`, `unitpriceadd`, `timebaseexp`,
+		`timebaseonline`, `timeunitexp`,`timeunitonline`, `trafficunitdl`,
+		`trafficunitul`, `trafficunitcomb`, `inittimeexp`,`inittimeonline`,
+		`initdl`, `initul`, `inittotal`, `srvtype`,`timeaddmodeexp`,
+		`timeaddmodeonline`, `trafficaddmode`, `monthly`,
+		`enaddcredits`,`minamount`, `minamountadd`, `resetcounters`,
+		`pricecalcdownload`, `pricecalcupload`,`pricecalcuptime`,
+		`unitpricetax`, `unitpriceaddtax`, `enableburst`,
+		`dlburstlimit`,`ulburstlimit`, `dlburstthreshold`, `ulburstthreshold`,
+		`dlbursttime`, `ulbursttime`,`enableservice`, `dlquota`, `ulquota`,
+		`combquota`, `timequota`, `priority`, `nextsrvid`, `dailynextsrvid`,
+		`availucp`, `renew`, `policymapdl`, `policymapul`, `custattr`)
+		VALUES
+		(#{srvid}, #{srvname}, #{downrate}, #{uprate}, #{limitdl},#{limitul},
+		#{limitcomb}, #{limitexpiration}, #{limituptime},
+		#{poolname},#{unitprice}, #{unitpriceadd}, #{timebaseexp},
+		#{timebaseonline}, #{timeunitexp},#{timeunitonline}, #{trafficunitdl},
+		#{trafficunitul}, #{trafficunitcomb},
+		#{inittimeexp},#{inittimeonline}, #{initdl}, #{initul}, #{inittotal},
+		#{srvtype},#{timeaddmodeexp}, #{timeaddmodeonline}, #{trafficaddmode},
+		#{monthly}, #{enaddcredits},#{minamount}, #{minamountadd},
+		#{resetcounters}, #{pricecalcdownload},
+		#{pricecalcupload},#{pricecalcuptime}, #{unitpricetax},
+		#{unitpriceaddtax}, #{enableburst}, #{dlburstlimit},#{ulburstlimit},
+		#{dlburstthreshold}, #{ulburstthreshold}, #{dlbursttime},
+		#{ulbursttime},#{enableservice}, #{dlquota}, #{ulquota}, #{combquota},
+		#{timequota},#{priority}, #{nextsrvid}, #{dailynextsrvid},
+		#{availucp}, #{renew},#{policymapdl}, #{policymapul}, #{custattr})
+	</insert>
+
+	<insert id="insertAllowednases">
+		INSERT INTO `rm_allowednases`(`srvid`, `nasid`)
+		VALUES (#{0}, #{1})
+	</insert>
+
+	<insert id="insertAllowedmanagers">
+		INSERT INTO `rm_allowedmanagers`(`srvid`,
+		`managername`) VALUES (#{0}, #{1})
+	</insert>
+
+	<insert id="insertChangesrv" parameterType="Changesrv">
+		INSERT INTO
+		`rm_changesrv`(`username`, `newsrvid`, `newsrvname`,
+		`scheduledate`,
+		`requestdate`, `status`, `transid`, `requested`)
+		VALUES
+		(#{username},
+		#{newsrvid}, #{newsrvname},
+		#{scheduledate},
+		#{requestdate}, #{status},
+		#{transid}, #{requested})
+	</insert>
+
+	<select id="queryIsExistChangesrv" parameterType="String"
+		resultType="Changesrv">
+		SELECT * FROM `rm_changesrv`
+		where `username` = #{0}
+		order by `id` DESC
+		limit 0,1
+	</select>
+
+	<update id="updateService" parameterType="Service">
+		UPDATE `rm_services`
+		SET
+		`srvname`=#{srvname},`downrate`=#{downrate},`uprate`=#{uprate},`limitdl`=#{limitdl},`limitul`=#{limitul},
+		`limitcomb`=#{limitcomb},`limitexpiration`=#{limitexpiration},`limituptime`=#{limituptime},`poolname`=#{poolname},`unitprice`=#{unitprice},
+		`unitpriceadd`=#{unitpriceadd},`timebaseexp`=#{timebaseexp},`timebaseonline`=#{timebaseonline},`timeunitexp`=#{timeunitexp},
+		`timeunitonline`=#{timeunitonline},`trafficunitdl`=#{trafficunitdl},`trafficunitul`=#{trafficunitul},`trafficunitcomb`=#{trafficunitcomb},
+		`inittimeexp`=#{inittimeexp},`inittimeonline`=#{inittimeonline},`initdl`=#{initdl},`initul`=#{initul},
+		`inittotal`=#{inittotal},`srvtype`=#{srvtype},`timeaddmodeexp`=#{timeaddmodeexp},`timeaddmodeonline`=#{timeaddmodeonline},
+		`trafficaddmode`=#{trafficaddmode},`monthly`=#{monthly},`enaddcredits`=#{enaddcredits},`minamount`=#{minamount},
+		`minamountadd`=#{minamountadd},`resetcounters`=#{resetcounters},`pricecalcdownload`=#{pricecalcdownload},`pricecalcupload`=#{pricecalcupload},
+		`pricecalcuptime`=#{pricecalcuptime},`unitpricetax`=#{unitpricetax},`unitpriceaddtax`=#{unitpriceaddtax},`enableburst`=#{enableburst},
+		`dlburstlimit`=#{dlburstlimit},`ulburstlimit`=#{ulburstlimit},`dlburstthreshold`=#{dlburstthreshold},`ulburstthreshold`=#{ulburstthreshold},
+		`dlbursttime`=#{dlbursttime},`ulbursttime`=#{ulbursttime},`enableservice`=#{enableservice},`dlquota`=#{dlquota},`ulquota`=#{ulquota},
+		`combquota`=#{combquota},`timequota`=#{timequota},`priority`=#{priority},`nextsrvid`=#{nextsrvid},`dailynextsrvid`=#{dailynextsrvid},
+		`availucp`=#{availucp},`renew`=#{renew},`policymapdl`=#{policymapdl},`policymapul`=#{policymapul},`custattr`=#{custattr}
+		WHERE `srvid`= #{srvid}
+	</update>
+
+	<delete id="deleteNases" parameterType="int">
+		DELETE FROM
+		`rm_allowednases` WHERE srvid = #{0}
+	</delete>
+
+	<delete id="deleteManagers" parameterType="int">
+		DELETE FROM
+		`rm_allowedmanagers` where srvid = #{0}
+	</delete>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.telnet.radius.mapper.RadcheckMapper">
+
+	<insert id="insert" parameterType="Radcheck">
+		INSERT INTO
+		`radcheck`(`username`, `attribute`, `op`, `value`) VALUES
+		(#{username}, #{attribute}, #{op}, #{value})
+	</insert>
+
+	<update id="update" parameterType="Radcheck">
+		UPDATE `radcheck` SET `value`
+		= #{value}
+		where `username` = #{username}
+		and `attribute` = 'Cleartext-Password'
+	</update>
+</mapper>

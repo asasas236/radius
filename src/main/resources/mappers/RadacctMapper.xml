@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.telnet.radius.mapper.RadacctMapper">
+
+	<select id="queryOnlineUser" resultType="Radacct">
+		SELECT `username`,
+		`nasipaddress`, `acctstarttime`, `acctsessiontime`, `acctinputoctets`,
+		`acctoutputoctets`, `callingstationid`, `framedipaddress` FROM
+		`radacct`
+		WHERE `acctstarttime` is not null and `acctstoptime` is null
+		and
+		`acctterminatecause` = 0;
+	</select>
+
+	<select id="queryAll" resultType="Radacct">
+		select
+		temp.reportY,
+		sum(temp.acctsessiontime) as acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`) as temp
+		group by
+		temp.reportY
+	</select>
+
+	<select id="queryAllParam" parameterType="Radacct" resultType="Radacct">
+		select
+		temp.reportY,
+		temp.username,
+		sum(temp.acctsessiontime) as acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		username,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`
+		where username=#{username}) as temp
+		group by
+		temp.reportY
+	</select>
+
+	<select id="queryAllByYear" parameterType="int" resultType="Radacct">
+		select
+		temp.reportY,
+		temp.reportM,
+		sum(temp.acctsessiontime) as
+		acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		month(acctstarttime) as reportM,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`
+		where year(`acctstarttime`) = #{0}) as temp
+		group by temp.reportM
+	</select>
+	
+	<select id="queryAllByYearUser" resultType="Radacct">
+		select
+		temp.reportY,
+		temp.reportM,
+		temp.username,
+		sum(temp.acctsessiontime) as
+		acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		month(acctstarttime) as reportM,
+		username,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`
+		where year(`acctstarttime`) = #{0} and `username` = #{1}) as temp
+		group by temp.reportM
+	</select>
+
+	<select id="queryAllByMonth" parameterType="int" resultType="Radacct">
+		select
+		temp.reportY,
+		temp.reportM,
+		temp.reportD,
+		sum(temp.acctsessiontime) as acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		month(acctstarttime) as reportM,
+		day(acctstarttime) as reportD,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`
+		where year(`acctstarttime`) = #{0} and
+		month(`acctstarttime`) = #{1}) as temp
+		group by temp.reportD
+	</select>
+	
+	<select id="queryAllByMonthUser"  resultType="Radacct">
+		select
+		temp.reportY,
+		temp.reportM,
+		temp.reportD,
+		temp.username,
+		sum(temp.acctsessiontime) as acctsessiontime,
+		sum(temp.acctoutputoctets) as acctoutputoctets,
+		sum(temp.acctinputoctets) as acctinputoctets
+		from (SELECT
+		year(acctstarttime) as reportY,
+		month(acctstarttime) as reportM,
+		day(acctstarttime) as reportD,
+		username,
+		`acctsessiontime`,
+		`acctoutputoctets`,
+		`acctinputoctets`
+		FROM `radacct`
+		where year(`acctstarttime`) = #{0} and
+		month(`acctstarttime`) = #{1} and
+		`username` = #{2}) as temp
+		group by temp.reportD
+	</select>
+
+	<select id="queryAllByDay" parameterType="int" resultType="Radacct">
+		SELECT * FROM `radacct` WHERE
+		year(`acctstarttime`) = #{0}
+		and month(`acctstarttime`) = #{1}
+		and day(`acctstarttime`) = #{2}
+	</select>
+	
+	<select id="queryAllByDayUser" resultType="Radacct">
+		SELECT * FROM `radacct` WHERE
+		year(`acctstarttime`) = #{0}
+		and month(`acctstarttime`) = #{1}
+		and day(`acctstarttime`) = #{2}
+		and `username` = #{3}
+	</select>
+</mapper>

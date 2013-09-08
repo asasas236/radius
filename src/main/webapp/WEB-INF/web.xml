@@ -12,7 +12,7 @@
 		<url-pattern>*.gif</url-pattern>
 		<url-pattern>*.jpg</url-pattern>
 		<url-pattern>*.bpm</url-pattern>
-		<url-pattern>*.json</url-pattern>
+		<url-pattern>*.map</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -31,4 +31,30 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+
+	<filter>
+		<filter-name>AdminSessionFilter</filter-name>
+		<filter-class>com.telnet.radius.filter.AdminSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminSessionFilter</filter-name>
+		<url-pattern>/admin/welcome</url-pattern>
+		<url-pattern>/admin/user/*</url-pattern>
+		<url-pattern>/admin/plan/*</url-pattern>
+		<url-pattern>/admin/report/*</url-pattern>
+	</filter-mapping>
+
+	<error-page>
+		<error-code>400</error-code>
+		<location>/public/static/error-400.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/public/static/error-404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/public/static/error-500.jsp</location>
+	</error-page>
 </web-app>

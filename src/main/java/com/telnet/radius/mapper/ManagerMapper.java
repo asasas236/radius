@@ -1,9 +1,18 @@
 package com.telnet.radius.mapper;
 
-import com.telnet.radius.po.Manager;
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+
+import com.telnet.radius.model.Manager;
 
 public interface ManagerMapper {
-	
-	int checkAccount(Manager manager);
-	
+
+	public int checkAccount(Manager manager) throws DataAccessException;
+
+	public Manager queryManager(String username, String password)
+			throws DataAccessException;
+
+	public List<Manager> queryManagerList() throws DataAccessException;
+
 }
