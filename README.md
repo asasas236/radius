@@ -820,16 +820,16 @@ radius 数据库表格说明
 		<td>11</td><td>wed</td><td>周三</td>
 	</tr>
 	<tr>
-		<td>2</td><td>thu</td><td>周四</td>
+		<td>12</td><td>thu</td><td>周四</td>
 	</tr>
 	<tr>
-		<td>2</td><td>fri</td><td>周五</td>
+		<td>13</td><td>fri</td><td>周五</td>
 	</tr>
 	<tr>
-		<td>2</td><td>sat</td><td>周六</td>
+		<td>14</td><td>sat</td><td>周六</td>
 	</tr>
 	<tr>
-		<td>2</td><td>sun</td><td>服务ID</td>
+		<td>15</td><td>sun</td><td>服务ID</td>
 	</tr>
 </table>
 
