@@ -97,6 +97,8 @@ radius 数据库表格说明
 *  [rm_actsrv](#rm_actsrv) [用户激活服务记录表，那个用户，什么时候，激活了什么服务] [共计5个字段]
 *  [rm_allowednases](#rm_allowednases) [服务允许使用的nas] [共计2个字段]
 *  [rm_allowedmanagers](#rm_allowedmanagers) [服务允许什么管理员来管理] [共计2个字段]
+*  [rm_specperacnt](#rm_specperacnt) [特殊计费时段] [共计15个字段]
+*  [rm_specperbw](#rm_specperbw) [特殊带宽控制] [共计21个字段]
 
 * <h4 id='rm_users'>rm_users</h4> [用户信息表] [共计42个字段] [back](#all-table)
 
@@ -775,6 +777,130 @@ radius 数据库表格说明
 	</tr>
 	<tr>
 		<td>2</td><td>managername</td><td>管理员名字</td>
+	</tr>
+</table>
+
+* <h4 id='rm_specperacnt'>rm_specperacnt</h4> [特殊计费时段] [共计15个字段] [back](#all-table)
+
+<table>
+	<tr>
+		<th>#</th><th>字段</th><th>描述</th>
+	</tr>
+	<tr>
+		<td>1</td><td>id</td><td>ID 自动增长</td>
+	</tr>
+	<tr>
+		<td>2</td><td>srvid</td><td>服务ID</td>
+	</tr>
+	<tr>
+		<td>3</td><td>starttime</td><td>开始时间</td>
+	</tr>
+	<tr>
+		<td>4</td><td>endtime</td><td>结束时间</td>
+	</tr>
+	<tr>
+		<td>5</td><td>timeratio</td><td>时长比率</td>
+	</tr>
+	<tr>
+		<td>6</td><td>dlratio</td><td>下载比率</td>
+	</tr>
+	<tr>
+		<td>7</td><td>ulratio</td><td>上传比率</td>
+	</tr>
+	<tr>
+		<td>8</td><td>connallowed</td><td>允许连接</td>
+	</tr>
+	<tr>
+		<td>9</td><td>mon</td><td>周一</td>
+	</tr>
+	<tr>
+		<td>10</td><td>tue</td><td>周二</td>
+	</tr>
+	<tr>
+		<td>11</td><td>wed</td><td>周三</td>
+	</tr>
+	<tr>
+		<td>2</td><td>thu</td><td>周四</td>
+	</tr>
+	<tr>
+		<td>2</td><td>fri</td><td>周五</td>
+	</tr>
+	<tr>
+		<td>2</td><td>sat</td><td>周六</td>
+	</tr>
+	<tr>
+		<td>2</td><td>sun</td><td>服务ID</td>
+	</tr>
+</table>
+
+* <h4 id='rm_specperbw'>rm_specperbw</h4> [特殊带宽控制] [共计21个字段] [back](#all-table)
+
+<table>
+	<tr>
+		<th>#</th><th>字段</th><th>描述</th>
+	</tr>
+	<tr>
+		<td>1</td><td>id</td><td>ID 自动增长</td>
+	</tr>
+	<tr>
+		<td>2</td><td>srvid</td><td>服务ID</td>
+	</tr>
+	<tr>
+		<td>3</td><td>starttime</td><td>开始时间</td>
+	</tr>
+	<tr>
+		<td>4</td><td>endtime</td><td>结束时间</td>
+	</tr>
+	<tr>
+		<td>5</td><td>dlrate</td><td>带宽下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>6</td><td>ulrate</td><td>带宽下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>7</td><td>dlburstlimit</td><td>突发极限下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>8</td><td>ulburstlimit</td><td>突发极限下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>9</td><td>dlburstthreshold</td><td>突发门限下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>10</td><td>ulburstthreshold</td><td>突发门限下载/上传(kbps)</td>
+	</tr>
+	<tr>
+		<td>11</td><td>dlbursttime</td><td>突发时间下载/上传(seconds)</td>
+	</tr>
+	<tr>
+		<td>12</td><td>ulbursttime</td><td>突发时间下载/上传(seconds)</td>
+	</tr>
+	<tr>
+		<td>13</td><td>enableburst</td><td>启用突发</td>
+	</tr>
+	<tr>
+		<td>14</td><td>priority</td><td>优先级别</td>
+	</tr>
+	<tr>
+		<td>15</td><td>mon</td><td>周一</td>
+	</tr>
+	<tr>
+		<td>16</td><td>tue</td><td>周二</td>
+	</tr>
+	<tr>
+		<td>17</td><td>wed</td><td>周三</td>
+	</tr>
+	<tr>
+		<td>18</td><td>thu</td><td>周四</td>
+	</tr>
+	<tr>
+		<td>19</td><td>fri</td><td>周五</td>
+	</tr>
+	<tr>
+		<td>20</td><td>sat</td><td>周六</td>
+	</tr>
+	<tr>
+		<td>21</td><td>sun</td><td>周日</td>
 	</tr>
 </table>
 
